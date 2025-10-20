@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <title>Document</title>
+    <script defer src="main.js" type="module"></script>
+  </head>
+  <body>
+    <main>
+      <form method="get" action="">
+        <label class="labelImporte"
+          >Importe
+          <input type="number" value="0" class="inputImport" />
+        </label>
+        <label class="labelDivisaFrom"
+          >De
+          <select name="pets" id="inputDivisaFrom" class="inputDivisaFrom">
+            <option value="">--Please choose an option--</option>
+            <option value="Euros">Euros</option>
+            <option value="Libras">Libras</option>
+            <option value="Dolares">Dolares</option>
+            <option value="🎂">🎂</option>
+          </select>
+        </label>
+        <img src="arrow.webp" alt="flecha cambio de divisas" />
+        <label class="labelDivisaTo"
+          >a
+          <select name="pets" id="inputDivisaTo" class="inputDivisaTo">
+            <option value="">--Please choose an option--</option>
+            <option value="Euros">Euros</option>
+            <option value="Libras">Libras</option>
+            <option value="Dolares">Dolares</option>
+            <option value="🎂">🎂</option>
+          </select>
+        </label>
+        <input type="submit" value="Cambiar" class="inputSubmit" />
+      </form>
+      <h1>Historico</h1>
+      <section id="historicSection" class="historicSection"></section>
+    </main>
+  </body>
+</html>
