@@ -1,0 +1,27 @@
+form {
+  display: flex;
+  flex-direction: row;
+  gap: 3em;
+}
+
+.importColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.fromColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.toColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+h1 {
+  align-items: center;
+}
