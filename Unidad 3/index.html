@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="main.css" />
     <title>Document</title>
     <script defer src="main.js" type="module"></script>
+    <script defer src="constants.js" type="module"></script>
+    <script defer src="cambioDivisa.js" type="module"></script>
+    <script defer src="Model/historicModel.js" type="module"></script>
   </head>
   <body>
     <main>
@@ -24,7 +27,7 @@
             <option value="🎂">🎂</option>
           </select>
         </label>
-        <img src="arrow.webp" alt="flecha cambio de divisas" />
+        <img src="arrow.webp" id="imagenArrow" alt="flecha cambio de divisas" />
         <label class="labelDivisaTo"
           >a
           <select name="pets" id="inputDivisaTo" class="inputDivisaTo">

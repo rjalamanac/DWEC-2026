@@ -53,3 +53,7 @@ img {
   grid-column-start: 3;
   grid-row-start: 1;
 }
+
+p {
+  text-align: center;
+}
