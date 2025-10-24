@@ -1,9 +1,9 @@
 form {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  grid-template-rows: 44% 44% 44%;
+  grid-template-rows: 33% 33% 33%;
   row-gap: 0.5rem;
-  padding-bottom: 2rem;
+  padding-bottom: 4rem;
   border-bottom: 2px solid black;
 }
 
