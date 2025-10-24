@@ -31,3 +31,5 @@ for (let index = 0; index * index <= numero; index++) {
     }
   }
 }
+
+n ^ 2;

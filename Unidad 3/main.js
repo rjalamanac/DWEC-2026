@@ -1,4 +1,9 @@
 import { cambioDivisa } from "./cambioDivisa.js";
+import { HISTORIC_KEY } from "./constants.js";
+import { Historico } from "./Model/historicModel.js";
+
+let arrayHistorico = [];
+loadHistoric();
 
 const btnSubmit = document.getElementsByClassName("inputSubmit")[0];
 
@@ -12,16 +17,47 @@ btnSubmit.addEventListener("click", (event) => {
 
   const divisaValueFrom = divisaFrom[divisaFrom.selectedIndex].value;
   const divisaValueTo = divisaTo[divisaTo.selectedIndex].value;
-  let cambio = cambioDivisa(divisaValueFrom, divisaValueTo, valorNumerico);
+  let valorCambio = cambioDivisa(divisaValueFrom, divisaValueTo, valorNumerico);
+  const fecha = new Date(Date.now());
   addHistoricExchange(
     valorNumerico,
-    cambio,
+    valorCambio,
     divisaValueFrom,
     divisaValueTo,
-    new Date(Date.now())
+    fecha
+  );
+  addLineHistoricToLocalStorage(
+    new Historico(
+      valorNumerico,
+      valorCambio,
+      divisaValueFrom,
+      divisaValueTo,
+      fecha
+    )
   );
 });
 
+function addLineHistoricToLocalStorage(objHistorico) {
+  arrayHistorico.push(objHistorico);
+  localStorage.setItem(HISTORIC_KEY, JSON.stringify(arrayHistorico));
+}
+
+function loadHistoric() {
+  let stringHistoric = localStorage.getItem(HISTORIC_KEY);
+  if (stringHistoric !== null) {
+    arrayHistorico = JSON.parse(stringHistoric);
+    for (let index = 0; index < arrayHistorico.length; index++) {
+      const element = arrayHistorico[index];
+      addHistoricExchange(
+        element.valueOrigin,
+        element.valueExchange,
+        element.divisaFrom,
+        element.divisaTo,
+        new Date(Date.parse(element.fechaActual))
+      );
+    }
+  }
+}
 function addHistoricExchange(
   valueOrigin,
   valueExchanged,
@@ -31,7 +67,7 @@ function addHistoricExchange(
 ) {
   const sectionHistorico = document.getElementById("historicSection");
   const nuevaLineaHistorico = document.createElement("p");
-  const valorNumericoExchanged = valueExchanged.toString().slice(0, 5);
+  const valorNumericoExchanged = Number.parseFloat(valueExchanged).toFixed(2);
   const textHistoricoNuevaLinea = document.createTextNode(
     `${fechaActual.getDate()}/${fechaActual.getMonth()}/${fechaActual.getFullYear()} 
     ${fechaActual.getHours()}:${fechaActual.getMinutes()} 
