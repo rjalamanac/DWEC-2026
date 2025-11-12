@@ -22,6 +22,8 @@ class Folder {
 }
 
 const folder = new Folder("Documents");
-folder.add(new File("cv.pdf"));
+const folder2 = new Folder("LoL");
+folder2.add(new File("cv.pdf"));
 folder.add(new File("notes.txt"));
+folder.add(folder2);
 folder.display();

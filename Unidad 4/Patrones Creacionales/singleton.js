@@ -1,10 +1,28 @@
-class Config {
+class TaskManager {
   constructor() {
-    if (Config.instance) return Config.instance;
-    this.settings = { theme: "dark" };
-    Config.instance = this;
+    if (TaskManager.instance === undefined) {
+      TaskManager.instance = this;
+      this.array = [];
+    }
+    return this;
+  }
+
+  addTask(task) {
+    this.array.push(task);
+  }
+  removeTask(id) {
+    filteredArray = [];
+    this.array.forEach((x) => {
+      if (x.id !== id) {
+        filteredArray.push(x);
+      }
+    });
+    this.array = filteredArray;
+  }
+  show() {
+    this.array.forEach((x) => console.log(JSON.stringify(x)));
   }
 }
-const c1 = new Config();
-const c2 = new Config();
-console.log(c1 === c2); // true
+
+const arrayManager = new TaskManager();
+export { arrayManager };

@@ -7,6 +7,13 @@ function withLogging(fn) {
   };
 }
 
-const sum = (a, b) => a + b;
-const loggedSum = withLogging(sum);
-loggedSum(3, 4);
+class treeDecotor {
+  constructor(...args) {
+    arrayFunction = args.toArray();
+  }
+  decorate() {
+    for (element of arrayFunction) {
+      element.decorate();
+    }
+  }
+}
