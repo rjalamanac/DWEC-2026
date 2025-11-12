@@ -1,3 +1,4 @@
+"use strict";
 function add(x, y) {
   return x + y;
 }
@@ -11,48 +12,39 @@ function div(x, y) {
   return x / y;
 }
 
-var Command = function (execute, undo, value) {
+let Command = function (execute, value) {
   this.execute = execute;
-  this.undo = undo;
   this.value = value;
 };
 
-var AddCommand = function (value) {
-  return new Command(add, sub, value);
+let AddCommand = function (value) {
+  return new Command(add, value);
 };
 
-var SubCommand = function (value) {
-  return new Command(sub, add, value);
+let SubCommand = function (value) {
+  return new Command(sub, value);
 };
 
-var MulCommand = function (value) {
-  return new Command(mul, div, value);
+let MulCommand = function (value) {
+  return new Command(mul, value);
 };
 
-var DivCommand = function (value) {
-  return new Command(div, mul, value);
+let DivCommand = function (value) {
+  return new Command(div, value);
 };
 
-var Calculator = function () {
-  var current = 0;
-  var commands = [];
+let Calculator = function () {
+  let current = 0;
 
   function action(command) {
-    var name = command.execute.toString().substr(9, 3);
+    let name = command.execute.toString().substr(9, 3);
     return name.charAt(0).toUpperCase() + name.slice(1);
   }
 
   return {
     execute: function (command) {
       current = command.execute(current, command.value);
-      commands.push(command);
       console.log(action(command) + ": " + command.value);
-    },
-
-    undo: function () {
-      var command = commands.pop();
-      current = command.undo(current, command.value);
-      console.log("Undo " + action(command) + ": " + command.value);
     },
 
     getCurrentValue: function () {
@@ -62,19 +54,13 @@ var Calculator = function () {
 };
 
 function run() {
-  var calculator = new Calculator();
-
-  // issue commands
-
+  let calculator = new Calculator();
   calculator.execute(new AddCommand(100));
   calculator.execute(new SubCommand(24));
   calculator.execute(new MulCommand(6));
   calculator.execute(new DivCommand(2));
 
-  // reverse last two commands
-
-  calculator.undo();
-  calculator.undo();
-
   console.log("\nValue: " + calculator.getCurrentValue());
 }
+
+run();
