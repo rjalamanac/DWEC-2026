@@ -1,11 +1,21 @@
 class OldAPI {
   request() {
-    return "Old data format";
+    return Error("xd");
+    return "<note> <to>Tove</to> <from>Jani</from> <heading>Reminder</heading> <body>Don't forget me this weekend!</body> </note>";
   }
 }
+
 class NewAPI {
-  getData() {
-    return "New data format";
+  getData(numElements) {
+    const obj = {
+      note: {
+        to: "Tove",
+        from: "Jani",
+        heading: "Reminder",
+        body: "Don't forget me this weekend!",
+      },
+    };
+    return JSON.stringify(obj);
   }
 }
 class APIAdapter {
@@ -13,9 +23,22 @@ class APIAdapter {
     this.newAPI = new NewAPI();
   }
   request() {
-    return this.newAPI.getData();
+    const numElmenetos = 40;
+    const jsonData = this.newAPI.getData(numElmenetos);
+    return this.convertirXML(jsonData);
+  }
+  convertirXML(jsonData) {
+    return "<note> <to>Tove</to> <from>Jani</from> <heading>Reminder</heading> <body>Don't forget me this weekend!</body> </note>";
   }
 }
 
-const adapter = new APIAdapter();
-console.log("Adapted response:", adapter.request());
+function main() {
+  /*
+  let oldApi = new OldAPI();
+  console.log(oldApi.request());
+  */
+  let adapater = new APIAdapter();
+  console.log(adapater.request());
+}
+
+main();

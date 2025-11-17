@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Thomas y sus Amigos: Gestor de Trenes</title>
+    <style>
+      body {
+        font-family: "Comic Sans MS", cursive, sans-serif;
+        background-color: #f0f8ff;
+        margin: 0;
+        padding: 20px;
+        color: #333;
+      }
+      h1 {
+        color: #d62828;
+        text-align: center;
+      }
+      .container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .section {
+        margin-bottom: 20px;
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background: #f9f9f9;
+      }
+      form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      input,
+      select,
+      button {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        background: #d62828;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      button:hover {
+        background: #b71c1c;
+      }
+      #trenesList {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 15px;
+      }
+      .tren-card {
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+        background: white;
+      }
+      .tren-card h3 {
+        margin-top: 0;
+        color: #d62828;
+      }
+      #simulador {
+        background: #e3f2fd;
+        padding: 15px;
+        border-radius: 5px;
+      }
+      #resultadoViaje {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        background: #fff3e0;
+        display: none;
+      }
+      .evento-retraso {
+        color: #d62828;
+        font-weight: bold;
+      }
+      .evento-normal {
+        color: #2e7d32;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Thomas y sus Amigos: Gestor de Trenes</h1>
+
+      <!-- Registro de Trenes -->
+      <div class="section">
+        <h2>Registrar Nuevo Tren</h2>
+        <form id="trenForm">
+          <div>
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" required />
+          </div>
+          <div>
+            <label for="tipo">Tipo:</label>
+            <select id="tipo" required>
+              <option value="Vapor">Vapor</option>
+              <option value="Diésel">Diésel</option>
+              <option value="Eléctrico">Eléctrico</option>
+              <option value="Maglev">Maglev</option>
+            </select>
+          </div>
+          <div>
+            <label for="velocidad">Velocidad (km/h):</label>
+            <input type="number" id="velocidad" min="10" max="300" required />
+          </div>
+          <div>
+            <button type="submit">Añadir Tren</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Simulador de Viajes -->
+      <div class="section" id="simulador">
+        <h2>Simulador de Viajes</h2>
+        <div>
+          <label for="estacionOrigen">Estación Origen:</label>
+          <select id="estacionOrigen">
+            <option value="Sodor Central">Sodor Central</option>
+            <option value="Knapford">Knapford</option>
+            <option value="Vicarstown">Vicarstown</option>
+            <option value="Tidmouth Sheds">Tidmouth Sheds</option>
+          </select>
+        </div>
+        <div>
+          <label for="estacionDestino">Estación Destino:</label>
+          <select id="estacionDestino">
+            <option value="Sodor Central">Sodor Central</option>
+            <option value="Knapford">Knapford</option>
+            <option value="Vicarstown">Vicarstown</option>
+            <option value="Tidmouth Sheds">Tidmouth Sheds</option>
+          </select>
+        </div>
+        <div>
+          <label for="trenViaje">Selecciona Tren:</label>
+          <select id="trenViaje"></select>
+        </div>
+        <button id="simularBtn">Simular Viaje</button>
+        <div id="resultadoViaje"></div>
+      </div>
+
+      <!-- Listado de Trenes -->
+      <div class="section">
+        <h2>Listado de Trenes</h2>
+        <input
+          type="text"
+          id="buscar"
+          placeholder="Buscar por nombre o tipo..."
+        />
+        <input type="submit" id="buscar" value="Search" />
+        <div id="trenesList"></div>
+        <button id="borrarTodos">Borrar Todos los Trenes</button>
+      </div>
+    </div>
+
+    <script>
+      // Array para almacenar trenes
+      let trenes = [];
+
+      // Cargar trenes desde LocalStorage al iniciar
+      document.addEventListener("DOMContentLoaded", () => {
+        cargarTrenes();
+        actualizarListaTrenes();
+        actualizarSelectTrenes();
+      });
+
+      // Formulario para añadir tren
+      document.getElementById("trenForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const nombre = document.getElementById("nombre").value;
+        const tipo = document.getElementById("tipo").value;
+        const velocidad = parseInt(document.getElementById("velocidad").value);
+        const fechaAlta = new Date().toLocaleDateString("es-ES");
+
+        const nuevoTren = { nombre, tipo, velocidad, fechaAlta };
+        trenes.push(nuevoTren);
+        guardarTrenes();
+        actualizarListaTrenes();
+        actualizarSelectTrenes();
+        e.target.reset();
+      });
+
+      // Simular viaje
+      document.getElementById("simularBtn").addEventListener("click", () => {
+        const origen = document.getElementById("estacionOrigen").value;
+        const destino = document.getElementById("estacionDestino").value;
+        const trenSeleccionado = document.getElementById("trenViaje").value;
+        const tren = trenes.find((t) => t.nombre === trenSeleccionado);
+
+        if (!tren) {
+          alert("Selecciona un tren válido");
+          return;
+        }
+
+        const distancia = Math.floor(Math.random() * 45) + 5; // 5-50 km
+        const tiempoMinutos = Math.round((distancia / tren.velocidad) * 60);
+        const eventos = [
+          {
+            texto: "¡Viaje sin incidentes!",
+            clase: "evento-normal",
+            retraso: 0,
+          },
+          {
+            texto: "¡Retraso por ovejas en la vía! (+10 min)",
+            clase: "evento-retraso",
+            retraso: 10,
+          },
+          {
+            texto: "¡Avería en el motor! (+15 min)",
+            clase: "evento-retraso",
+            retraso: 15,
+          },
+        ];
+        const evento = eventos[Math.floor(Math.random() * eventos.length)];
+        const tiempoTotal = tiempoMinutos + evento.retraso;
+
+        const resultado = document.getElementById("resultadoViaje");
+        resultado.innerHTML = `
+                <h3> Viaje de ${origen} a ${destino}</h3>
+                <p><strong>Tren:</strong> ${tren.nombre} (${tren.tipo}, ${tren.velocidad} km/h)</p>
+                <p><strong>Distancia:</strong> ${distancia} km</p>
+                <p><strong>Tiempo estimado:</strong> ${tiempoMinutos} minutos</p>
+                <p class="${evento.clase}">${evento.texto}</p>
+                <p><strong>Tiempo total:</strong> ${tiempoTotal} minutos</p>
+            `;
+        resultado.style.display = "block";
+      });
+
+      // Borrar todos los trenes
+      document.getElementById("borrarTodos").addEventListener("click", () => {
+        if (confirm("¿Estás seguro de que quieres borrar todos los trenes?")) {
+          trenes = [];
+          guardarTrenes();
+          actualizarListaTrenes();
+          actualizarSelectTrenes();
+          document.getElementById("resultadoViaje").style.display = "none";
+        }
+      });
+
+      // Buscar trenes
+      document.getElementById("buscar").addEventListener("input", (e) => {
+        const termino = e.target.value.toLowerCase();
+        const trenesFiltrados = trenes.filter(
+          (tren) =>
+            tren.nombre.toLowerCase().includes(termino) ||
+            tren.tipo.toLowerCase().includes(termino)
+        );
+        mostrarTrenes(trenesFiltrados);
+      });
+
+      // Funciones auxiliares
+      function guardarTrenes() {
+        localStorage.setItem("trenes", JSON.stringify(trenes));
+      }
+
+      function cargarTrenes() {
+        const trenesGuardados = localStorage.getItem("trenes");
+        if (trenesGuardados) {
+          trenes = JSON.parse(trenesGuardados);
+        }
+      }
+
+      function actualizarListaTrenes() {
+        mostrarTrenes(trenes);
+      }
+
+      function mostrarTrenes(trenesAMostrar) {
+        const lista = document.getElementById("trenesList");
+        lista.innerHTML = "";
+        if (trenesAMostrar.length === 0) {
+          lista.innerHTML = "<p>¡No hay trenes en la estación!</p>";
+          return;
+        }
+        trenesAMostrar.forEach((tren) => {
+          const card = document.createElement("div");
+          card.className = "tren-card";
+          card.innerHTML = `
+                    <h3>${tren.nombre}</h3>
+                    <p><strong>Tipo:</strong> ${tren.tipo}</p>
+                    <p><strong>Velocidad:</strong> ${tren.velocidad} km/h</p>
+                    <p><strong>Fecha de alta:</strong> ${tren.fechaAlta}</p>
+                `;
+          lista.appendChild(card);
+        });
+      }
+
+      function actualizarSelectTrenes() {
+        const select = document.getElementById("trenViaje");
+        select.innerHTML = "";
+        trenes.forEach((tren) => {
+          const option = document.createElement("option");
+          option.value = tren.nombre;
+          option.textContent = tren.nombre;
+          select.appendChild(option);
+        });
+      }
+    </script>
+  </body>
+</html>
