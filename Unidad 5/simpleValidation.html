@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Built-in HTML Validation</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f8f8f8;
+        padding: 40px;
+      }
+      form {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      input,
+      textarea,
+      button {
+        display: block;
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 8px;
+        font-size: 14px;
+      }
+      button {
+        background: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Built-in HTML Validation</h2>
+    <form>
+      <label>Name:</label>
+      <input
+        type="text"
+        name="name"
+        required
+        minlength="3"
+        maxlength="20"
+        autocomplete="given-name"
+      />
+
+      <label>Email:</label>
+      <input
+        type="email"
+        name="email"
+        required
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+        autocomplete="email"
+      />
+
+      <label>Age:</label>
+      <input type="date" name="age" required autocomplete="bday" />
+
+      <label>Website:</label>
+      <input
+        type="url"
+        name="website"
+        placeholder="https://example.com"
+        autocomplete="url"
+      />
+
+      <label>Message:</label>
+      <textarea name="message" required minlength="10"></textarea>
+
+      <button type="submit">Submit</button>
+    </form>
+  </body>
+</html>

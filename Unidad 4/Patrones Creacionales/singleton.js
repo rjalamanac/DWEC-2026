@@ -1,10 +1,18 @@
-class Config {
-  constructor() {
-    if (Config.instance) return Config.instance;
-    this.settings = { theme: "dark" };
-    Config.instance = this;
+class MySumador {
+  constructor() {}
+  sumar(num) {
+    return 1 + num;
   }
+  static sumarPro(num) {
+    return 2 + num;
+  }
+  static nombreGod;
+  nombre;
 }
-const c1 = new Config();
-const c2 = new Config();
-console.log(c1 === c2); // true
+
+const newSumador = new MySumador();
+newSumador.nombre = "200";
+newSumador.nombreGod = "1000";
+
+const otroSumador = new MySumador();
+console.log(otroSumador.nombreGod);

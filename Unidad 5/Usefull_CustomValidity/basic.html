@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Validación de Formularios con setCustomValidity - Kodetop</title>
+    <link
+      rel="stylesheet"
+      href="https://www.kodetop.com/demo/assets/styles.css"
+    />
+    <style>
+      input:invalid {
+        border-color: red;
+      }
+    </style>
+    <script defer type="module" src="main.js"></script>
+  </head>
+  <body data-theme="">
+    <header>
+      <div class="content">
+        <h1>
+          <a href="https://www.kodetop.com/">
+            <img
+              src="https://www.kodetop.com/demo/assets/logo-kodetop.png"
+              alt="Kodetop"
+          /></a>
+        </h1>
+      </div>
+    </header>
+    <main>
+      <summary class="content">
+        <h2>Demo: Validación Básica con setCustomValidity</h2>
+        <p>
+          Artículo original:
+          <a
+            href="https://www.kodetop.com/validacion-de-formularios-en-javascript-con-setcustomvalidity/"
+            >Validación de Formularios en JavaScript con setCustomValidity</a
+          >
+        </p>
+      </summary>
+
+      <section class="content content--underline">
+        <h3>Formulario</h3>
+
+        <form id="formRegister" novalidate>
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="name" />
+
+          <label for="name">Nombre:</label>
+          <input
+            type="text"
+            id="name"
+            required
+            name="name"
+            autocomplete="given-name"
+          />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            required
+            name="email"
+            autocomplete="email"
+          />
+
+          <label for="phone">Teléfono:</label>
+          <input
+            type="text"
+            id="phone"
+            name="phone"
+            placeholder="(XXX) XXX-XXXX"
+            autocomplete="tel-country-code"
+            required
+          />
+
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+      <footer>
+        Author:<a href="mailto:chapas@rafael.com">chapas@rafael.com</a>
+      </footer>
+    </main>
+  </body>
+</html>
