@@ -6,11 +6,6 @@ const username = document.getElementById("username");
 
 const USERNAME = ["rafa", "jorge", "ignacio", "pedro"];
 
-// validate on input
-nombre.addEventListener("input", validateName);
-email.addEventListener("input", validateEmail);
-phone.addEventListener("input", validatePhone);
-
 // validate on submit
 form.addEventListener("submit", (e) => {
   validateUsername();
@@ -25,7 +20,9 @@ form.addEventListener("submit", (e) => {
 });
 
 function validateUsername() {
-  if (USERNAME.includes(username.value)) {
+  if (username.value.length === 0) {
+    username.setCustomValidity("Introduce nombre usuario");
+  } else if (USERNAME.includes(username.value)) {
     username.setCustomValidity("El usuario existe en nuestra BBDD 🎂");
   } else {
     username.setCustomValidity("");
