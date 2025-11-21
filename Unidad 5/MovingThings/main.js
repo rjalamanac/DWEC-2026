@@ -8,3 +8,5 @@ function moveIt(event) {
   btn.style.top = Math.floor(randomY) + "px";
   btn.style.left = Math.floor(randomX) + "px";
 }
+
+setInterval(moveIt, 200);
