@@ -1,0 +1,4 @@
+.flexResult {
+  display: flex;
+  flex-direction: row;
+}
