@@ -1,4 +1,4 @@
-# ✅ **1. Using Express Generator (simple REST API template)**
+# **1. Using Express Generator (simple REST API template)**
 
 **Express** is the most popular framework for simple REST APIs.
 
