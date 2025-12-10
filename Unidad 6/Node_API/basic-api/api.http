@@ -1,0 +1,31 @@
+### Get all motos
+GET http://localhost:7777/motos
+Accept: application/json
+
+### Get moto by ID
+GET http://localhost:7777/motos/6254c5b0-0f17-41bf-89ac-219a6428a51e
+Accept: application/json
+
+### Delete moto by ID
+DELETE http://localhost:7777/motos/6254c5b0-0f17-41bf-89ac-219a6428a51e
+Accept: application/json
+
+### Create a new moto
+POST http://localhost:7777/motos
+Content-Type: application/json
+
+{
+  "marca": "Yamaha",
+  "modelo": "MT-07",
+  "precio": 7500
+}
+
+### Update a moto by ID
+PUT http://localhost:7777/motos/1
+Content-Type: application/json
+
+{
+  "marca": "Honda",
+  "modelo": "CB500F",
+  "precio": 6500
+}

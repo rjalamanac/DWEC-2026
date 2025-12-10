@@ -1,6 +1,7 @@
 const select = document.getElementById("idSelect");
 const DITTO_SRC =
   "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/132.png";
+
 fetch("https://pokeapi.co/api/v2/type")
   .then((response) => {
     if (response.status !== 200) {
