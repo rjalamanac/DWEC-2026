@@ -3,6 +3,7 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const cors = require("cors");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -39,5 +40,12 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render("error");
 });
+
+const options = {
+  //Especificar la ruta de vuestra aplicación
+  origin: "http://localhost:5500",
+};
+
+app.use(cors(options));
 
 module.exports = app;
