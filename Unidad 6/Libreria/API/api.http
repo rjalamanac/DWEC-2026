@@ -1,0 +1,32 @@
+### Get all libros
+GET http://localhost:3000/libros
+Accept: application/json
+
+### Get libro by ID
+GET http://localhost:3000/libros/c6cbac7e-13eb-486d-851f-cd6b77ff987f
+Accept: application/json
+
+### Delete libro by ID
+DELETE http://localhost:3000/libros/e32f77a4-cc2d-4022-8b92-5f3fd56cf513
+Accept: application/json
+
+### Create a new libro
+POST http://localhost:3000/libros
+Content-Type: application/json
+
+{
+  "titulo": "jaja",
+  "autor": "123",
+  "anio": 1995
+}
+
+### Update a libro by ID
+PUT http://localhost:3000/libros/1ff574a0-28a0-40c6-972b-43a2c65a4c99
+Content-Type: application/json
+
+{
+  "titulo": "Honda",
+  "autor": "CB500F",
+  "anio": 6500,
+  "id":"1ff574a0-28a0-40c6-972b-43a2c65a4c99"
+}

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Librería Comercio</title>
+    <link rel="stylesheet" href="style.css" />
+    <script type="module" src="main.js"></script>
+  </head>
+  <body>
+    <header>
+      <h1 id="logo">📚 Comercio</h1>
+      <nav>
+        <button id="btnHome">Home</button>
+        <button id="btnConsultar">Consultar</button>
+        <button id="btnCrear">Crear</button>
+      </nav>
+    </header>
+
+    <main>
+      <!-- HOME -->
+      <section id="home">
+        <h2>Bienvenido a la Librería Comercio</h2>
+        <p>
+          Desde aquí puedes consultar los libros disponibles o añadir uno nuevo
+          a la librería.
+        </p>
+      </section>
+
+      <!-- CONSULTAR -->
+      <section id="consultar" class="hidden">
+        <h2>Listado de libros</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Autor</th>
+              <th>Año</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody id="tablaLibros"></tbody>
+        </table>
+      </section>
+
+      <!-- CREAR -->
+      <section id="crear" class="hidden">
+        <h2>Crear nuevo libro</h2>
+        <form id="formCrear">
+          <div>
+            <label>Título</label><br />
+            <input type="text" id="titulo" required />
+          </div>
+          <div>
+            <label>Autor</label><br />
+            <input type="text" id="autor" required />
+          </div>
+          <div>
+            <label>Año</label><br />
+            <input type="number" id="anio" required />
+          </div>
+          <button type="submit">Guardar libro</button>
+        </form>
+      </section>
+    </main>
+  </body>
+</html>
