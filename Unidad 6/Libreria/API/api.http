@@ -3,11 +3,11 @@ GET http://localhost:3000/libros
 Accept: application/json
 
 ### Get libro by ID
-GET http://localhost:3000/libros/c6cbac7e-13eb-486d-851f-cd6b77ff987f
+GET http://localhost:3000/libros/1d681246-608f-457f-99dd-7155e36ba760
 Accept: application/json
 
 ### Delete libro by ID
-DELETE http://localhost:3000/libros/e32f77a4-cc2d-4022-8b92-5f3fd56cf513
+DELETE http://localhost:3000/libros/1f6510b5-f749-4c8b-b742-c560c265014f
 Accept: application/json
 
 ### Create a new libro
@@ -21,12 +21,12 @@ Content-Type: application/json
 }
 
 ### Update a libro by ID
-PUT http://localhost:3000/libros/1ff574a0-28a0-40c6-972b-43a2c65a4c99
+PUT http://localhost:3000/libros/1d681246-608f-457f-99dd-7155e36ba760
 Content-Type: application/json
 
 {
   "titulo": "Honda",
   "autor": "CB500F",
   "anio": 6500,
-  "id":"1ff574a0-28a0-40c6-972b-43a2c65a4c99"
+  "id":"1d681246-608f-457f-99dd-7155e36ba760"
 }

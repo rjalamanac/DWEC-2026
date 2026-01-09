@@ -1,0 +1,33 @@
+### Get all santas
+GET http://localhost:3000/santa-claus-hoho
+Accept: application/json
+
+### Get santa by ID
+GET http://localhost:3000/santa-claus-hoho/908f77b0-c445-484c-9d2f-6509a3e0c90
+Accept: application/json
+
+### Delete santa by ID
+DELETE http://localhost:3000/santas/1f6510b5-f749-4c8b-b742-c560c265014f
+Accept: application/json
+
+### Create a new santa
+POST http://localhost:3000/santa-claus-hoho
+Content-Type: application/json
+
+{
+  "peso": 120,
+  "regalos": "Suspensos para todos",
+  "color": "Brown",
+  "nacionalidad": "Marroquí"
+}
+
+### Update a santa by ID
+PUT http://localhost:3000/santas/1d681246-608f-457f-99dd-7155e36ba760
+Content-Type: application/json
+
+{
+  "titulo": "Honda",
+  "autor": "CB500F",
+  "anio": 6500,
+  "id":"1d681246-608f-457f-99dd-7155e36ba760"
+}
