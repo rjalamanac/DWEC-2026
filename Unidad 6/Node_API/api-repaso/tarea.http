@@ -1,0 +1,31 @@
+### Get all santas
+GET http://localhost:3000/tareas
+Accept: application/json
+
+### Get santa by ID
+GET http://localhost:3000/tareas/6aaf1435-c3f7-4e6c-a485-2aaa6fa3a7e1
+Accept: application/json
+
+### Delete santa by ID
+DELETE http://localhost:3000/tareas/6aaf1435-c3f7-4e6c-a485-2aaa6fa3a7e1
+Accept: application/json
+
+### Create a new santa
+POST http://localhost:3000/tareas
+Content-Type: application/json
+
+{
+  "nombre": "Tarea Importante 4",
+  "descripcion": "OSCAR HOLA QUE TAL"
+}
+
+### Update a santa by ID
+PUT http://localhost:3000/santas/1d681246-608f-457f-99dd-7155e36ba760
+Content-Type: application/json
+
+{
+  "titulo": "Honda",
+  "autor": "CB500F",
+  "anio": 6500,
+  "id":"1d681246-608f-457f-99dd-7155e36ba760"
+}
