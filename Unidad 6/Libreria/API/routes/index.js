@@ -1,9 +1,10 @@
 var express = require("express");
+var router = express.Router();
+
 const { MongoClient } = require("mongodb");
 const url = "mongodb://mongoadmin:secret@localhost:32768";
 const client = new MongoClient(url);
 const dbName = "Mono";
-var router = express.Router();
 
 /* GET home page. */
 router.get("/", async function (req, res, next) {

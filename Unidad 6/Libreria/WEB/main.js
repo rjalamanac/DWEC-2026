@@ -78,7 +78,7 @@ async function pintarLibros() {
                 <td><button value="${libro.id}">X</button></td>
             `;
     tbody.appendChild(fila);
-    for (const button of document.getElementsByTagName("button")) {
+    for (const button of document.querySelectorAll("td button")) {
       button.addEventListener("click", deleteBook);
     }
   }
