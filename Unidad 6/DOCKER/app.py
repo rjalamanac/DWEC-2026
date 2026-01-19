@@ -5,8 +5,9 @@ app = Flask(__name__)
 
 # list of cat images
 images = [
-   "https://media.giphy.com/media/3o6Zt481isNVuQI1l6/giphy.gif",
+   "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExdnVmazRkeXZqZjB2aGp0ZGxvaGY4ZWp6NTVjcjNjMTkzNDVjejNsOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/901mxGLGQN2PyCQpoc/giphy.gif",
     "https://media.giphy.com/media/BzyTuYCmvSORqs1ABM/giphy.gif",
+    "https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdDBwb3Jhdm5yeWYzcmhhbzZsMHlnYXRvcDlzdHUxaGVwMjc4d2NubyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rQQ7EeK6Kwh3WFSvR2/giphy.gif",
     "https://media.giphy.com/media/mlvseq9yvZhba/giphy.gif",
     "https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif",
     "https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif",
