@@ -22,15 +22,19 @@ export class Details {
   });
   constructor() {
     this.housingLocationId = Number(this.route.snapshot.params["id"]);
-    this.housingLocation = this.housingService.getHousingLocationById(
-      this.housingLocationId
-    );
+    const housingLocationId = parseInt(this.route.snapshot.params["id"], 10);
+    this.housingService
+      .getHousingLocationById(housingLocationId)
+      .then((housingLocation) => {
+        this.housingLocation = housingLocation;
+        this.changeDetectorRef.markForCheck();
+      });
   }
   submitApplication() {
     this.housingService.submitApplication(
       this.applyForm.value.firstName ?? "",
       this.applyForm.value.lastName ?? "",
-      this.applyForm.value.email ?? ""
+      this.applyForm.value.email ?? "",
     );
   }
 }
