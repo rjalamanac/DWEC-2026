@@ -1,9 +1,15 @@
 <section>
   <form>
-    <input type="text" placeholder="Filter by city" />
-    <button class="primary" type="button">Search</button>
+    <input
+      type="text"
+      placeholder="Filter by city"
+      (keyup)="houseFilterKeyDown(filterHouses.value)"
+      #filterHouses
+    />
   </form>
 </section>
 <section class="results">
+  @for (housingLocation of filteredLocationList; track $index) {
   <app-housing-location [housingLocation]="housingLocation" />
+  }
 </section>
