@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { ChangeDetectorRef, Component, inject } from "@angular/core";
 import { HousingLocation } from "../../components/housing-location/housing-location";
 import { HousingLocationInfo } from "src/app/interfaces/housinglocation";
 import { HousingService } from "src/app/service/housing-service";
@@ -14,7 +14,7 @@ export class Home {
   filteredLocationList: HousingLocationInfo[] = [];
   housingService: HousingService = inject(HousingService);
 
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
     this.housingService
       .getAllHousingLocations()
       .then((housingLocationList: HousingLocationInfo[]) => {
