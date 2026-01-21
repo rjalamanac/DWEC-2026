@@ -1,4 +1,4 @@
-import { Component, inject } from "@angular/core";
+import { ChangeDetectorRef, Component, inject } from "@angular/core";
 import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { HousingLocationInfo } from "src/app/interfaces/housinglocation";
@@ -20,11 +20,10 @@ export class Details {
     lastName: new FormControl(""),
     email: new FormControl(""),
   });
-  constructor() {
+  constructor(private changeDetectorRef: ChangeDetectorRef) {
     this.housingLocationId = Number(this.route.snapshot.params["id"]);
-    const housingLocationId = parseInt(this.route.snapshot.params["id"], 10);
     this.housingService
-      .getHousingLocationById(housingLocationId)
+      .getHousingLocationById(this.housingLocationId)
       .then((housingLocation) => {
         this.housingLocation = housingLocation;
         this.changeDetectorRef.markForCheck();
