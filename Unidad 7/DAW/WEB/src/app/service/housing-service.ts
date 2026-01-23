@@ -13,15 +13,25 @@ export class HousingService {
     return (await data.json()) ?? [];
   }
   async getHousingLocationById(
-    id: number,
+    id: string,
   ): Promise<HousingLocationInfo | undefined> {
-    const data = await fetch(`${this.url}?id=${id}`);
+    const data = await fetch(`${this.url}/${id}`);
     const locationJson = await data.json();
     return locationJson[0] ?? {};
   }
-  submitApplication(firstName: string, lastName: string, email: string) {
-    console.log(
-      `Homes application received: firstName: ${firstName}, lastName: ${lastName}, email: ${email}.`,
-    );
+  async addNewHouse(
+    house: HousingLocationInfo | undefined,
+  ): Promise<HousingLocationInfo | undefined> {
+    let myHeaders = new Headers({
+      "Content-Type": "application/json",
+    });
+    const requestLibros = new Request(`${this.url}`, {
+      method: "POST",
+      body: JSON.stringify(house),
+      headers: myHeaders,
+    });
+    const requestPostLibros = await fetch(requestLibros);
+    const dataCreatedBook = await requestPostLibros.json();
+    return dataCreatedBook;
   }
 }

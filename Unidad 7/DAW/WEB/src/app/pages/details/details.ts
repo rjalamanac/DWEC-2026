@@ -12,7 +12,7 @@ import { HousingService } from "src/app/service/housing-service";
 })
 export class Details {
   route: ActivatedRoute = inject(ActivatedRoute);
-  housingLocationId = -1;
+  housingLocationId = "";
   housingLocation: HousingLocationInfo | undefined;
   housingService: HousingService = inject(HousingService);
   applyForm = new FormGroup({
@@ -21,7 +21,7 @@ export class Details {
     email: new FormControl(""),
   });
   constructor(private changeDetectorRef: ChangeDetectorRef) {
-    this.housingLocationId = Number(this.route.snapshot.params["id"]);
+    this.housingLocationId = this.route.snapshot.params["id"];
     this.housingService
       .getHousingLocationById(this.housingLocationId)
       .then((housingLocation) => {
@@ -29,11 +29,5 @@ export class Details {
         this.changeDetectorRef.markForCheck();
       });
   }
-  submitApplication() {
-    this.housingService.submitApplication(
-      this.applyForm.value.firstName ?? "",
-      this.applyForm.value.lastName ?? "",
-      this.applyForm.value.email ?? "",
-    );
-  }
+  submitApplication() {}
 }
