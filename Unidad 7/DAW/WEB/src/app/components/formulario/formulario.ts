@@ -1,12 +1,5 @@
 import { ChangeDetectorRef, Component, inject } from "@angular/core";
-import {
-  AbstractControl,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidationErrors,
-  ValidatorFn,
-} from "@angular/forms";
+import { FormControl, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { HousingLocationInfo } from "src/app/interfaces/housinglocation";
 import { HousingService } from "src/app/service/housing-service";
 
@@ -36,7 +29,7 @@ export class Formulario {
     const dataRequest: HousingLocationInfo = {
       availableUnits: Number(this.applyForm.value.availableUnits),
       id: 0,
-      name: this.applyForm.value.name ?? "",
+      name: this.applyForm.value.name ?? "Casa sin nombre",
       city: this.applyForm.value.city ?? "",
       state: this.applyForm.value.state ?? "",
       photo: this.applyForm.value.photo ?? "",

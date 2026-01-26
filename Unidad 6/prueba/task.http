@@ -1,0 +1,42 @@
+### Get all tasks
+GET http://localhost:3000/tasks
+Accept: application/json
+
+### Get libro by ID
+GET http://localhost:3000/tasks/1d681246-608f-457f-99dd-7155e36ba760
+Accept: application/json
+
+### Delete libro by ID
+DELETE http://localhost:3000/tasks/1f6510b5-f749-4c8b-b742-c560c265014f
+Accept: application/json
+
+### Create a new libro
+POST http://localhost:3000/tasks
+Content-Type: application/json
+
+{
+  "titulo": "jaja",
+  "autor": "123",
+  "anio": 1995
+}
+
+### Update a libro by ID
+PUT http://localhost:3000/tasks/1d681246-608f-457f-99dd-7155e36ba760
+Content-Type: application/json
+
+{
+  "titulo": "Honda",
+  "autor": "CB500F",
+  "anio": 6500,
+  "id":"1d681246-608f-457f-99dd-7155e36ba760"
+}
+
+### Post user
+POST http://localhost:3000/users/register
+Content-Type: application/json
+
+{
+"name": "Rafa",
+"password": "contra123",
+"admin": true
+}

@@ -9,11 +9,11 @@ POST http://localhost:3000/housing-location
 Content-Type: application/json
 
 {
-    "name": "Seriously Safe Towns",
-    "city": "Oakland",
-    "state": "CA",
-    "photo": "https://angular.dev/assets/images/tutorials/common/saru-robert-9rP3mxf8qWI-unsplash.jpg",
-    "availableUnits": 10,
-    "wifi": false,
-    "laundry": false
+    "name": "IES Comercio",
+    "city": "Logroño",
+    "state": "La Rioja",
+    "photo": "https://img.desmotivaciones.es/201201/desmotivaciones430.jpg",
+    "availableUnits": 3,
+    "wifi": true,
+    "laundry": true
 }
